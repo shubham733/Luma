@@ -41,7 +41,7 @@ class LumaBasePage(BasePage):
         self.product_name_link = self.page.locator('.product-item-name').get_by_role('link').first
         self.success_alert = self.page.locator("[data-ui-id='message-success']")
         self.error_alert = self.page.locator("[data-ui-id='message-error']")
-        self.minicart_dialog = self.page.locator('.block-minicart')
+        self.minicart_dialog = self.page.locator('#mini-cart')
         self.product_details_tile = self.page.locator('.product-item-details')
         self.remove_product_from_cart_ok_button = self.page.get_by_role("button", name="OK")
         self.cart_dialog_empty_product_title = self.page.locator('.subtitle.empty')
@@ -143,6 +143,7 @@ class LumaBasePage(BasePage):
         return self.product_name_link.inner_text()
 
     def get_success_message(self):
+        self.page.wait_for_load_state('networkidle')
         return self.success_alert.inner_text()
 
     def get_error_message(self):

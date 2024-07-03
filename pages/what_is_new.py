@@ -20,15 +20,19 @@ class WhatIsNewPage(LumaBasePage):
     def select_product_color(self, product_name, product_color):
         self.product_details_tile.filter(has_text=product_name).get_by_label(product_color).click()
 
-    def add_product_to_cart(self, product_name, product_size, product_color):
-        self.select_product_size(product_name, product_size)
-        self.select_product_color(product_name, product_color)
+    def add_product_to_cart(self, product_name, product_size=None, product_color=None):
+        if product_size:
+            self.select_product_size(product_name, product_size)
+        if product_color:
+            self.select_product_color(product_name, product_color)
         self.page.get_by_title(product_name).hover()
         self.product_details_tile.filter(has_text=product_name).get_by_title('Add to Cart').click()
 
-    def add_product_to_wishlist(self, product_name, product_size, product_color):
-        self.select_product_size(product_name, product_size)
-        self.select_product_color(product_name, product_color)
+    def add_product_to_wishlist(self, product_name, product_size=None, product_color=None):
+        if product_size:
+            self.select_product_size(product_name, product_size)
+        if product_color:
+            self.select_product_color(product_name, product_color)
         self.page.get_by_title(product_name).hover()
         self.product_details_tile.filter(has_text=product_name).get_by_title('Add to Wish List').click()
 

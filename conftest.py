@@ -5,7 +5,7 @@ from pages.customer_login import CustomerLoginPage
 
 @pytest.fixture(autouse=True)
 def go_to_base_url(page):
-    page.goto('https://magento.softwaretestingboard.com')
+    page.goto(os.getenv('BASE_URL'), timeout=60000)
 
     yield page
 
